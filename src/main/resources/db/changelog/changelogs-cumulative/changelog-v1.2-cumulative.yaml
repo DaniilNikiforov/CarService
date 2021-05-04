@@ -1,0 +1,9 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 4
+      author: author
+
+  # constraints
+  - include:
+      file: db/changelog/data/insert_data.sql
