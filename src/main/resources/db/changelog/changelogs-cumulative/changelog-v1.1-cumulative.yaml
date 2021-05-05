@@ -6,4 +6,4 @@ databaseChangeLog:
 
   # constraints
   - include:
-      file: db/changelog/tables/users/add-constraint-users.sql
+      file: db/changelog/tables/users/add-constraint-users.sql  

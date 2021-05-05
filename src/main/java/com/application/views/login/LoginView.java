@@ -7,13 +7,26 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.router.PageTitle;
-import com.application.views.main.MainView;
+import com.vaadin.flow.component.notification.Notification;
 
-@Route(value = "login", layout = MainView.class)
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.application.services.AuthService;
+import com.application.services.UserService;
+import com.application.exception.AuthException;
+import com.application.entities.User;
+
+@Route(value = "login")
 @PageTitle("Login")
 public class LoginView extends Div {
 
+	@Autowired
+	private AuthService authService;
+	@Autowired
+	private UserService userService;
+	
     public LoginView() {
         addClassName("login-view");
         
@@ -21,6 +34,16 @@ public class LoginView extends Div {
         TextField usernameField 		= new TextField("Username");
         PasswordField passwordField 	= new PasswordField("Password");
         Button button					= new Button("Login");
+     
+        button.addClickListener(event -> {   				
+        	try {
+        		authService.authenticate(usernameField.getValue(), passwordField.getValue());
+        		UI.getCurrent().navigate("home");
+        	}
+        	catch (AuthException exc) {
+        		Notification.show(exc.getMessage());
+        	}
+        });
         
         add(welcomeTitle);
         add(usernameField);

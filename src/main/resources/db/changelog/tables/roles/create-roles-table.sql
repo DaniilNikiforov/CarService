@@ -2,7 +2,7 @@
 
 --changeset author:2021-05-01-create-table-roles
 CREATE TABLE roles(
-	id INT UNSIGNED PRIMARY KEY NOT NULL,
+	role_id BIGINT UNSIGNED PRIMARY KEY NOT NULL,
 	name VARCHAR(15)
 )
 

@@ -20,20 +20,29 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.server.VaadinSession;
 import com.application.views.main.MainView;
 import com.application.views.home.HomeView;
 import com.application.views.login.LoginView;
 import com.application.views.admin.AdminView;
+
+import com.application.entities.User;
+import com.application.services.AuthService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
 public class MainView extends AppLayout {
 
+	private AuthService authService;
+	
     private final Tabs menu;
     private H1 viewTitle;
 
-    public MainView() {
+    public MainView(AuthService authService) {
+    	this.authService = authService;
         setPrimarySection(Section.DRAWER);
         addToNavbar(true, createHeaderContent());
         menu = createMenu();
@@ -80,8 +89,10 @@ public class MainView extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Home", HomeView.class), createTab("Login", LoginView.class),
-                createTab("Admin", AdminView.class)};
+    	User user = VaadinSession.getCurrent().getAttribute(User.class);
+    	return authService.getAuthorizedRoutes(user.getRole()).stream()
+                .map(r -> createTab(r.getName(), r.getView()))
+                .toArray(Component[]::new);
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {

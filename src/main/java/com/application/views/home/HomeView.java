@@ -7,7 +7,6 @@ import com.vaadin.flow.router.PageTitle;
 import com.application.views.main.MainView;
 import com.vaadin.flow.router.RouteAlias;
 
-@Route(value = "home", layout = MainView.class)
 @PageTitle("Home")
 public class HomeView extends Div {
 

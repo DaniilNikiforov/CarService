@@ -6,7 +6,6 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.application.views.main.MainView;
 
-@Route(value = "admin", layout = MainView.class)
 @PageTitle("Admin")
 public class AdminView extends Div {
 
