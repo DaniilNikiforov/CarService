@@ -1,11 +1,11 @@
-package backend.stream;
+package com.application.stream;
 
-import backend.cars.*;
-import backend.enam.WheelTypes;
+import com.application.cars.*;
+import com.application.enam.WheelTypes;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import backend.stream.StreamApi;
+import com.application.stream.StreamApi;
 
 import java.util.List;
 import java.util.Map;
