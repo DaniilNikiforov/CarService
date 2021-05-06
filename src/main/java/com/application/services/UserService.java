@@ -30,7 +30,7 @@ public class UserService{
 			return false; 
 		}
 		
-		u.setRole(roleRepository.findByName("USER"));
+		u.setRole(roleRepository.findByName("ADMIN"));
 		u.setPassword(passwordEncoder.encode(u.getPassword()));
 		
 		userRepository.save(u);

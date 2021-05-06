@@ -1,3 +1,7 @@
 .admin-view {
   display: block;
 }
+
+.header {
+	padding: 5px;
+}
