@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import com.application.repositories.UserRepository;
 import com.application.exception.AuthException;
@@ -47,10 +48,10 @@ public class AuthService {
 	}
 	
 	public void authenticate(String username, String password) throws AuthException {
-        User user = userRepository.findByUsername(username);
-        if (user != null && user.checkPassword(password, passwordEncoder)) {
-			VaadinSession.getCurrent().setAttribute(User.class, user);
-        	createRoutes(user.getRole());
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent() && user.get().checkPassword(password, passwordEncoder)) {
+			VaadinSession.getCurrent().setAttribute(User.class, user.get());
+        	createRoutes(user.get().getRole());
         } else {
         	throw new AuthException("Invalid credentials");
         }
@@ -71,8 +72,7 @@ public class AuthService {
         	routes.add(AuthorizedRoute.builder().route("logout").name("Logout").view(LogoutView.class).build());         
         } 
         else if (role.getName().equals("ADMIN")) {
-        	routes.add(AuthorizedRoute.builder().route("home").name("Home").view(HomeView.class).build());
-            routes.add(AuthorizedRoute.builder().route("logout").name("Logout").view(LogoutView.class).build());
+        	routes.add(AuthorizedRoute.builder().route("logout").name("Logout").view(LogoutView.class).build());
             routes.add(AuthorizedRoute.builder().route("admin").name("Admin").view(AdminView.class).build());
         }
 

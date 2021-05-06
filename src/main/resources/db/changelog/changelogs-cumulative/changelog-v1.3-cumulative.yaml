@@ -1,0 +1,19 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 5
+      author: author
+
+  # tables
+  - include:
+      file: db/changelog/tables/cars/create-cars-table.sql
+
+  - include:
+      file: db/changelog/tables/colors/create-colors-table.sql
+
+  - include:
+      file: db/changelog/tables/car_types/create-car_types-table.sql  
+
+  #constraints
+  - include:
+      file: db/changelog/tables/cars/add-constraint-cars.sql

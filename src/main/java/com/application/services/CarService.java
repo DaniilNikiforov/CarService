@@ -1,12 +1,27 @@
 package com.application.services;
 
-import com.application.cars.Engine;
-import com.application.stream.StreamApi;
+import com.application.entities.Car;
+import com.application.repositories.CarRepository;
+import com.application.stream.*;
+import com.application.cars.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 
+@Service
 public class CarService {
-    StreamApi streamApi;
+    
+	@Autowired
+	private CarRepository carRepository; 
+	
+	@Autowired
+	private StreamApi streamApi;
+	
+	public void createOrder(Car car) {
+		carRepository.save(car);
+	}
 
     public CarService(StreamApi streamApi) {
         this.streamApi = streamApi;
@@ -29,5 +44,5 @@ public class CarService {
         }
         throw new RuntimeException("Sum of weight can't be less than 0!");
     }
-
+	
 }

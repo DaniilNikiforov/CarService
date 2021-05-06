@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserService{
@@ -24,9 +26,9 @@ public class UserService{
 	private BCryptPasswordEncoder 	passwordEncoder;
 	
 	public boolean update(User u) {
-		User userDb = userRepository.findByUsername(u.getUsername());
+		Optional<User> userDb = userRepository.findByUsername(u.getUsername());
 		
-		if (userDb != null) {
+		if (userDb.isPresent()) {
 			return false; 
 		}
 		
