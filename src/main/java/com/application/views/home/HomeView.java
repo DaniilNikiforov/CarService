@@ -20,8 +20,8 @@ import com.vaadin.flow.router.RouteAlias;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.application.services.CarService;
-import com.application.repositories.ColorRepository;
-import com.application.repositories.CarTypeRepository;
+import com.application.services.ColorService;
+import com.application.services.CarTypeService;
 import com.application.entities.User;
 import com.application.entities.Car;
 
@@ -31,17 +31,17 @@ public class HomeView extends Div {
 	@Autowired
 	private CarService carService;
 	@Autowired
-	private ColorRepository colorRepository;
+	private ColorService colorService;
 	@Autowired
-	private CarTypeRepository carTypeRepository;
+	private CarTypeService carTypeService;
 	
 	private User user = VaadinSession.getCurrent().getAttribute(User.class);
 	
-    public HomeView(CarService carService, ColorRepository colorRepository, CarTypeRepository carTypeRepository) {
+    public HomeView(CarService carService, ColorService colorService, CarTypeService carTypeService) {
         
     	this.carService = carService;
-    	this.colorRepository = colorRepository;
-    	this.carTypeRepository = carTypeRepository;
+    	this.colorService = colorService;
+    	this.carTypeService = carTypeService;
     	
     	setClassName("home-view");
         
@@ -65,12 +65,13 @@ public class HomeView extends Div {
         typeRadioGroup.setValue("Red");
         
         
-        Button button = new Button("Order!", event -> {
-        	System.out.println(colorRadioGroup.getValue().toUpperCase());
+        Button button = new Button("Order!");
+		
+		button.addClickListener(event -> {
         	Car car = Car.builder()
         	.weight(weightField.getValue())
-        	.color(colorRepository.findByName(colorRadioGroup.getValue().toUpperCase()).get())
-        	.carType(carTypeRepository.findByName(typeRadioGroup.getValue().toUpperCase()).get())
+        	.color(colorService.getColorByName(colorRadioGroup.getValue().toUpperCase()).get())
+        	.carType(carTypeService.getCarTypeByName(typeRadioGroup.getValue().toUpperCase()).get())
         	.owner(user)
         	.build();
         	

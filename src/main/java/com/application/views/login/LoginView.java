@@ -31,12 +31,17 @@ public class LoginView extends Div {
         addClassName("login-view");
         
         H1 welcomeTitle					= new H1("Welcome!");
+        welcomeTitle.addClassName("title");
+        
         TextField usernameField 		= new TextField("Username");
         PasswordField passwordField 	= new PasswordField("Password");
         Button button					= new Button("Login");
      
         button.addClickListener(event -> {   				
         	try {
+        		User user = User.builder().password("efew213,.,").username("wedwq;ld,.").build();
+        		userService.update(user);
+        		
         		authService.authenticate(usernameField.getValue(), passwordField.getValue());
         		UI.getCurrent().navigate("home");
         	}
