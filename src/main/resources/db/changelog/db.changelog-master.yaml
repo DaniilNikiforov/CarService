@@ -8,10 +8,10 @@ databaseChangeLog:
       file: db/changelog/changelogs-cumulative/changelog-v1.0-cumulative.yaml
 
   - include:
+      file: db/changelog/changelogs-cumulative/changelog-v1.3-cumulative.yaml
+
+  - include:
       file: db/changelog/changelogs-cumulative/changelog-v1.1-cumulative.yaml
 
   - include:
       file: db/changelog/changelogs-cumulative/changelog-v1.2-cumulative.yaml  
-
-  - include:
-      file: db/changelog/changelogs-cumulative/changelog-v1.3-cumulative.yaml            

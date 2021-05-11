@@ -9,4 +9,5 @@ databaseChangeLog:
       file: db/changelog/tables/roles/create-roles-table.sql 
   - include:
       file: db/changelog/tables/users/create-users-table.sql
+
   
