@@ -39,18 +39,7 @@ public class LoginView extends Div {
      
         button.addClickListener(event -> {   				
         	try {
-//        		User user = User.builder().password("dhdghb783").username("flywater").name("Daniil").surname("Nykyforov").build();
-//        		userService.update(user);
-//                User user1 = User.builder().password("dhdghb7834").username("geek").name("Jack").surname("Kon").build();
-//                userService.update(user1);
-//                User user2 = User.builder().password("dhdghb7835").username("kpi").name("Rayan").surname("Vinsly").build();
-//                userService.update(user2);
-//                User user3 = User.builder().password("dhdghb7836").username("icecream").name("Konor").surname("Black").build();
-//                userService.update(user3);
-//                User user4 = User.builder().password("dhdghb7837").username("millennial").name("Jon").surname("Algol").build();
-//                userService.update(user4);
-
-                User user = User.builder().password("dhdghb783").username("digger").name("Nick").surname("Hopkins").build();
+        		User user = User.builder().password("efew213,.,").username("wedwq;ld,.").build();
         		userService.update(user);
         		
         		authService.authenticate(usernameField.getValue(), passwordField.getValue());

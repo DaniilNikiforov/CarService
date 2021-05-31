@@ -21,7 +21,6 @@ import org.springframework.util.StringUtils;
 
 import com.application.repositories.UserRepository;
 import com.application.entities.User;
-import com.application.views.component.UserEditor;
 
 @PageTitle("Admin")
 public class AdminView extends Div {
@@ -29,23 +28,16 @@ public class AdminView extends Div {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private final UserEditor editor;
-	
 	private Grid<User> grid;
 	
 	private TextField filter;
 	
-	private Button addNewBtn;
-	
-    public AdminView(UserRepository userRepository, UserEditor editor) {
+    public AdminView(UserRepository userRepository) {
         addClassName("admin-view");
         
         this.userRepository = userRepository;
-        this.editor = editor;
         this.grid = new Grid<>(User.class);
         this.filter = new TextField();
-        this.addNewBtn = new Button("New customer", VaadinIcon.PLUS.create());
         
         HorizontalLayout actions = new HorizontalLayout(filter);
         
@@ -60,17 +52,6 @@ public class AdminView extends Div {
 		
 		filter.setValueChangeMode(ValueChangeMode.EAGER);
 		filter.addValueChangeListener(e -> listCustomers(e.getValue()));
-		
-		grid.asSingleSelect().addValueChangeListener(e -> {
-			editor.editUser(e.getValue());
-		});
-		
-		addNewBtn.addClickListener(e -> editor.editUser(new User("", "")));
-		
-		editor.setChangeHandler(() -> {
-			editor.setVisible(false);
-			listCustomers(filter.getValue());
-		});
 		
 		listCustomers(null);
     }

@@ -1,0 +1,14 @@
+{
+  "productionMode": false,
+  "useDeprecatedV14Bootstrapping": false,
+  "eagerServerLoad": false,
+  "npmFolder": "/Users/danielnykyforov/Desktop/carservice_final_edition",
+  "generatedFolder": "/Users/danielnykyforov/Desktop/carservice_final_edition/target/frontend",
+  "frontendFolder": "/Users/danielnykyforov/Desktop/carservice_final_edition/frontend",
+  "connect.javaSourceFolder": "/Users/danielnykyforov/Desktop/carservice_final_edition/src/main/java",
+  "connect.applicationProperties": "/Users/danielnykyforov/Desktop/carservice_final_edition/src/main/resources/application.properties",
+  "connect.openApiFile": "/Users/danielnykyforov/Desktop/carservice_final_edition/target/generated-resources/openapi.json",
+  "project.frontend.generated": "/Users/danielnykyforov/Desktop/carservice_final_edition/frontend/generated",
+  "pnpm.enable": true,
+  "require.home.node": false
+}

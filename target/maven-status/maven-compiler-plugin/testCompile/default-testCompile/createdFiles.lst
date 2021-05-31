@@ -1,0 +1,7 @@
+com/application/cars/TruckTest.class
+com/application/cars/SupercarTest.class
+com/application/mockito/CarServiceIT.class
+com/application/cars/EngineTest.class
+com/application/stream/StreamApiTest.class
+com/application/cars/JeepTest.class
+com/application/cars/CarTest.class
